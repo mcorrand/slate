@@ -15,10 +15,10 @@ includes:
   - availability_data
   - pricing_data
   - availability_check
-  - embedding_widget
   - creating_inquiry
-  - reservation_status
+  - embedding_widget
   - webhook
+  - reservation_status
 
 search: true
 ---

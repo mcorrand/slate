@@ -1,4 +1,6 @@
-# Webhook
+# Tracking reservations
+ 
+## Get notified of changes
 
 Whenever the status of a reservation you own changes, or a payment is processed, we will post data to the URI you provided.
 
