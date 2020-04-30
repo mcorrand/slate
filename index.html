@@ -279,21 +279,24 @@
                   <li>
                     <a href="#availability-check" class="toc-h2 toc-link" data-title="Availability Check">Availability Check</a>
                   </li>
+                  <li>
+                    <a href="#inquiry-creation" class="toc-h2 toc-link" data-title="Inquiry Creation">Inquiry Creation</a>
+                  </li>
               </ul>
           </li>
           <li>
             <a href="#embedding-our-widget" class="toc-h1 toc-link" data-title="Embedding Our Widget">Embedding Our Widget</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#inquiry-creation" class="toc-h2 toc-link" data-title="Inquiry Creation">Inquiry Creation</a>
-                  </li>
-                  <li>
-                    <a href="#reservation-status" class="toc-h2 toc-link" data-title="Reservation Status">Reservation Status</a>
-                  </li>
-              </ul>
           </li>
           <li>
-            <a href="#webhook" class="toc-h1 toc-link" data-title="Webhook">Webhook</a>
+            <a href="#tracking-reservations" class="toc-h1 toc-link" data-title="Tracking reservations">Tracking reservations</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-notified-of-changes" class="toc-h2 toc-link" data-title="Get notified of changes">Get notified of changes</a>
+                  </li>
+                  <li>
+                    <a href="#get-the-latest-reservation-status" class="toc-h2 toc-link" data-title="Get the latest reservation status">Get the latest reservation status</a>
+                  </li>
+              </ul>
           </li>
       </ul>
         <ul class="toc-footer">
@@ -461,7 +464,545 @@
 </tbody></table>
 <h1 id='building-your-own-widget'>Building your own widget</h1>
 <p>The following endpoints are required to build your own calendar widget. If you are embedding our widget, <a href="#embedding-our-widget">skip ahead</a></p>
-<h2 id='package-list'>Package List</h2><h2 id='age-discounts-list'>Age Discounts List</h2><h2 id='seasons-list'>Seasons List</h2><h2 id='availability-data'>Availability Data</h2><h2 id='pricing-data'>Pricing Data</h2><h2 id='availability-check'>Availability Check</h2><h1 id='embedding-our-widget'>Embedding Our Widget</h1><h2 id='inquiry-creation'>Inquiry Creation</h2>
+<h2 id='package-list'>Package List</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/packages/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>None</p>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Package Name"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Package Description"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"nights"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"weekdays_arrival"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">],</span><span class="w">
+    </span><span class="nl">"seasons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">#</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">packages</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>The package&#39;s id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The package&#39;s name</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>The package&#39;s description</td>
+</tr>
+<tr>
+<td>nights</td>
+<td>Integer</td>
+<td>Number of nights the guest will spend at the property</td>
+</tr>
+<tr>
+<td>weekdays_arrival</td>
+<td>[Integer]</td>
+<td>list of weekdays allowed for check-in, 0 is Monday.</td>
+</tr>
+<tr>
+<td>seasons</td>
+<td>[Integer]</td>
+<td>list of season ids during which the package is offered at some point; it may only be offered part of that season, though.</td>
+</tr>
+</tbody></table>
+<h2 id='age-discounts-list'>Age Discounts List</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/agediscounts/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>None</p>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"policy"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"min_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"max_age"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"verbose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"from age 0 (inclusive) to 2"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"listings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price_dollars"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"price_percent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-100.00"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"package"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"verbose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00% off"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">#</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">listings</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">#</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">discounts</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<p>Age Discounts objects comprise a <code>policy</code> object which determines whether a guest is eligible to a discount, and one or more <code>listing</code> objects which determine the amount of the discount, based on the package the guest is booking.</p>
+
+<table><thead>
+<tr>
+<th>Object</th>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td><strong>policy</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>id</td>
+<td>Integer</td>
+<td>The policy&#39;s id</td>
+</tr>
+<tr>
+<td></td>
+<td>min_age</td>
+<td>Integer</td>
+<td>Minimum age at arrival to be eligible for the discount, <strong>inclusive</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>max_age</td>
+<td>Integer</td>
+<td>Maximum age at arrival to be eligible for the discount, <strong>exclusive</strong></td>
+</tr>
+<tr>
+<td></td>
+<td>verbose</td>
+<td>String</td>
+<td>A verbose representation of the policy terms</td>
+</tr>
+<tr>
+<td><strong>listings</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>id</td>
+<td>Integer</td>
+<td>The listing&#39;s id</td>
+</tr>
+<tr>
+<td></td>
+<td>price_dollars</td>
+<td>Integer or null</td>
+<td>The negative amount, in dollars, of the discount; will be null if the discount is percentage based</td>
+</tr>
+<tr>
+<td></td>
+<td>price_percent</td>
+<td>Integer or null</td>
+<td>The negative percentage, in dollars, of the discount; will be null if the discount is dollar based</td>
+</tr>
+<tr>
+<td></td>
+<td>package</td>
+<td>Integer or null</td>
+<td>If null, this is the default listing; otherwise, this is the id of the package the listing applies to. Package specific listings supercede the default.</td>
+</tr>
+<tr>
+<td></td>
+<td>verbose</td>
+<td>String</td>
+<td>A verbose representation of the listing</td>
+</tr>
+</tbody></table>
+<h2 id='seasons-list'>Seasons List</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/property-info/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pitchfork Ranch"</span><span class="p">,</span><span class="w"> 
+</span><span class="nl">"slug_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pitchfork-ranch"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property address"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public phone number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property description"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"policies_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com/policies"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"deposit_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+</span><span class="nl">"balance_due"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of the property</td>
+</tr>
+<tr>
+<td>slug_name</td>
+<td>String</td>
+<td>Slugified name of the property - useful especially when embedding the booking widget</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>General email address of the property - where they wish guests to email them</td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>String</td>
+<td>Email address of the Check-in Sherpa user who gave access</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>Property address</td>
+</tr>
+<tr>
+<td>website</td>
+<td>String</td>
+<td>Property website URL</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>Property phone number - for guests</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Property description</td>
+</tr>
+<tr>
+<td>policies_page</td>
+<td>String</td>
+<td>URL of the page on their website that has booking policies</td>
+</tr>
+<tr>
+<td>deposit_percentage</td>
+<td>Integer</td>
+<td>% of reservation total required for initial deposit</td>
+</tr>
+<tr>
+<td>balance_due</td>
+<td>Integer</td>
+<td># days prior to arrival when balance becomes dues. 0 means balance is due at check-out</td>
+</tr>
+</tbody></table>
+<h2 id='availability-data'>Availability Data</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/property-info/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pitchfork Ranch"</span><span class="p">,</span><span class="w"> 
+</span><span class="nl">"slug_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pitchfork-ranch"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property address"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public phone number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property description"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"policies_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com/policies"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"deposit_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+</span><span class="nl">"balance_due"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of the property</td>
+</tr>
+<tr>
+<td>slug_name</td>
+<td>String</td>
+<td>Slugified name of the property - useful especially when embedding the booking widget</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>General email address of the property - where they wish guests to email them</td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>String</td>
+<td>Email address of the Check-in Sherpa user who gave access</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>Property address</td>
+</tr>
+<tr>
+<td>website</td>
+<td>String</td>
+<td>Property website URL</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>Property phone number - for guests</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Property description</td>
+</tr>
+<tr>
+<td>policies_page</td>
+<td>String</td>
+<td>URL of the page on their website that has booking policies</td>
+</tr>
+<tr>
+<td>deposit_percentage</td>
+<td>Integer</td>
+<td>% of reservation total required for initial deposit</td>
+</tr>
+<tr>
+<td>balance_due</td>
+<td>Integer</td>
+<td># days prior to arrival when balance becomes dues. 0 means balance is due at check-out</td>
+</tr>
+</tbody></table>
+<h2 id='pricing-data'>Pricing Data</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/property-info/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pitchfork Ranch"</span><span class="p">,</span><span class="w"> 
+</span><span class="nl">"slug_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pitchfork-ranch"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property address"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public phone number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property description"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"policies_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com/policies"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"deposit_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+</span><span class="nl">"balance_due"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of the property</td>
+</tr>
+<tr>
+<td>slug_name</td>
+<td>String</td>
+<td>Slugified name of the property - useful especially when embedding the booking widget</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>General email address of the property - where they wish guests to email them</td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>String</td>
+<td>Email address of the Check-in Sherpa user who gave access</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>Property address</td>
+</tr>
+<tr>
+<td>website</td>
+<td>String</td>
+<td>Property website URL</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>Property phone number - for guests</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Property description</td>
+</tr>
+<tr>
+<td>policies_page</td>
+<td>String</td>
+<td>URL of the page on their website that has booking policies</td>
+</tr>
+<tr>
+<td>deposit_percentage</td>
+<td>Integer</td>
+<td>% of reservation total required for initial deposit</td>
+</tr>
+<tr>
+<td>balance_due</td>
+<td>Integer</td>
+<td># days prior to arrival when balance becomes dues. 0 means balance is due at check-out</td>
+</tr>
+</tbody></table>
+<h2 id='availability-check'>Availability Check</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/property-info/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pitchfork Ranch"</span><span class="p">,</span><span class="w"> 
+</span><span class="nl">"slug_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pitchfork-ranch"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property address"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public phone number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property description"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"policies_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com/policies"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"deposit_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+</span><span class="nl">"balance_due"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of the property</td>
+</tr>
+<tr>
+<td>slug_name</td>
+<td>String</td>
+<td>Slugified name of the property - useful especially when embedding the booking widget</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>General email address of the property - where they wish guests to email them</td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>String</td>
+<td>Email address of the Check-in Sherpa user who gave access</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>Property address</td>
+</tr>
+<tr>
+<td>website</td>
+<td>String</td>
+<td>Property website URL</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>Property phone number - for guests</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Property description</td>
+</tr>
+<tr>
+<td>policies_page</td>
+<td>String</td>
+<td>URL of the page on their website that has booking policies</td>
+</tr>
+<tr>
+<td>deposit_percentage</td>
+<td>Integer</td>
+<td>% of reservation total required for initial deposit</td>
+</tr>
+<tr>
+<td>balance_due</td>
+<td>Integer</td>
+<td># days prior to arrival when balance becomes dues. 0 means balance is due at check-out</td>
+</tr>
+</tbody></table>
+<h2 id='inquiry-creation'>Inquiry Creation</h2>
 <p><strong>Will add implementation when you’ve tested oauth, right now it’s simply to test your access token</strong></p>
 
 <ul>
@@ -470,9 +1011,7 @@
 <li>  Request Body: NONE CURRENTLY</li>
 <li>  Response Body: NONE CURRENTLY</li>
 </ul>
-<h2 id='reservation-status'>Reservation Status</h2>
-<p>Implementation to come</p>
-<h1 id='webhook'>Webhook</h1>
+<h1 id='embedding-our-widget'>Embedding Our Widget</h1><h1 id='tracking-reservations'>Tracking reservations</h1><h2 id='get-notified-of-changes'>Get notified of changes</h2>
 <p>Whenever the status of a reservation you own changes, or a payment is processed, we will post data to the URI you provided.</p>
 
 <p>The payload will contain:</p>
@@ -481,6 +1020,99 @@
 <li>  An object named ‘signature’ you will be able to use to verify the request is coming from us</li>
 <li>  The Id of the reservation that changed, so you can send a query to the Reservation Status endpoint and get the latest info.</li>
 </ul>
+<h2 id='get-the-latest-reservation-status'>Get the latest reservation status</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/property-info/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+</span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pitchfork Ranch"</span><span class="p">,</span><span class="w"> 
+</span><span class="nl">"slug_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pitchfork-ranch"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"user_email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"private_email@example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property address"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"website"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"public phone number"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Property description"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"policies_page"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://pitchforkranch.example.com/policies"</span><span class="p">,</span><span class="w">
+</span><span class="nl">"deposit_percentage"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+</span><span class="nl">"balance_due"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The name of the property</td>
+</tr>
+<tr>
+<td>slug_name</td>
+<td>String</td>
+<td>Slugified name of the property - useful especially when embedding the booking widget</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>General email address of the property - where they wish guests to email them</td>
+</tr>
+<tr>
+<td>user_email</td>
+<td>String</td>
+<td>Email address of the Check-in Sherpa user who gave access</td>
+</tr>
+<tr>
+<td>address</td>
+<td>String</td>
+<td>Property address</td>
+</tr>
+<tr>
+<td>website</td>
+<td>String</td>
+<td>Property website URL</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>Property phone number - for guests</td>
+</tr>
+<tr>
+<td>description</td>
+<td>String</td>
+<td>Property description</td>
+</tr>
+<tr>
+<td>policies_page</td>
+<td>String</td>
+<td>URL of the page on their website that has booking policies</td>
+</tr>
+<tr>
+<td>deposit_percentage</td>
+<td>Integer</td>
+<td>% of reservation total required for initial deposit</td>
+</tr>
+<tr>
+<td>balance_due</td>
+<td>Integer</td>
+<td># days prior to arrival when balance becomes dues. 0 means balance is due at check-out</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
