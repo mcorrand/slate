@@ -39,18 +39,18 @@ None
 
 Age Discounts objects comprise a `policy` object which determines whether a guest is eligible to a discount, and one or more `listing` objects which determine the amount of the discount, based on the package the guest is booking.
 
-Object | Key | Type | Description
---------- | ------- | ------- | -----------
+Key | Type | Description
+--------- | ------- | -----------
 **policy** |
-| | id | Integer | The policy's id
-| | min_age | Integer | Minimum age at arrival to be eligible for the discount, **inclusive**
-| | max_age | Integer | Maximum age at arrival to be eligible for the discount, **exclusive**
-| | verbose | String | A verbose representation of the policy terms
-**listings**|  |
-| | id | Integer | The listing's id
-| | price_dollars | Integer or null | The negative amount, in dollars, of the discount; will be null if the discount is percentage based
-| | price_percent | Integer or null | The negative percentage, in dollars, of the discount; will be null if the discount is dollar based
-| | package | Integer or null | If null, this is the default listing; otherwise, this is the id of the package the listing applies to. Package specific listings supercede the default. 
-| | verbose | String | A verbose representation of the listing
+id | Integer | The policy's id
+min_age | Integer | Minimum age at arrival to be eligible for the discount, **inclusive**
+max_age | Integer | Maximum age at arrival to be eligible for the discount, **exclusive**
+verbose | String | A verbose representation of the policy terms
+**listings**|
+id | Integer | The listing's id
+price_dollars | Integer or null | The negative amount, in dollars, of the discount; will be null if the discount is percentage based
+price_percent | Integer or null | The negative percentage, in dollars, of the discount; will be null if the discount is dollar based
+package | Integer or null | If null, this is the default listing; otherwise, this is the id of the package the listing applies to. Package specific listings supercede the default. 
+verbose | String | A verbose representation of the listing
 
 

@@ -1,48 +1,47 @@
  ## Pricing Data
 
-<!-- ### HTTP Request -->
+ ### HTTP Request
 
-<!-- `GET /partners/property-info/` -->
+ `GET /partners/pricing/`
 
-<!-- ### Query Parameters -->
+ ### Query Parameters
 
-<!-- Parameter | Required | Default | Description -->
-<!-- --------- | -------  | ------- | ----------- -->
+ Parameter | Required | Default | Description
+ --------- | -------  | ------- | -----------
+ season_id | Yes | - | The id of the season for which you are requesting availability data 
+ nights | Yes | - | The length of stay you are requesting pricing data for; must correspond to the length of a package that is available during the season
+ 
+ ### Response Body
 
-<!-- ### Response Body -->
+ > The json response looks like this:
 
-<!-- > The json response looks like this: -->
+ ```json
+[
+{
+    "start_date": "2020-06-07",
+    "end_date": "2020-06-20",
+    "weekdays_arrival": [2, 6], // i.e, Wednesday and Sunday
+    "low_price":
+    {
+        "2": ["1809.62", "1392.02", "1322.42", "1287.61", "1378.11"],
+        "6": ["1809.62", "1392.02", "1322.42", "1287.61", "1378.11"]
+    },
+},
+// More pricing periods
+]
+ ```
 
-<!-- ```json -->
-<!-- { -->
-<!-- "name": "Pitchfork Ranch",  -->
-<!-- "slug_name": "pitchfork-ranch", -->
-<!-- "email": "public_email@example.com", -->
-<!-- "user_email": "private_email@example.com", -->
-<!-- "address": "Property address", -->
-<!-- "website": "https://pitchforkranch.example.com", -->
-<!-- "phone": "public phone number", -->
-<!-- "description": "Property description", -->
-<!-- "policies_page": "https://pitchforkranch.example.com/policies", -->
-<!-- "deposit_percentage": 30, -->
-<!-- "balance_due": 45 -->
-<!-- } -->
-<!-- ``` -->
+ Key | Type | Description
+ --------- | ------- | -----------
+ start_date | String | The date the pricing period starts, in YYYY-MM-DD format
+ end_date | String | The date the pricing period ends, in YYYY-MM-DD format
+ weekdays_arrival | [Integer] | The list of (integer-based, 0 is Monday) weekdays that are available to check-in for the length of stay you requested
+ low_price | {String: [String]} | A dictionary that maps the weekday of arrival to the pricing data.
 
-<!-- Key | Type | Description -->
-<!-- --------- | ------- | ----------- -->
-<!-- name|String|The name of the property  -->
-<!-- slug_name|String|Slugified name of the property - useful especially when embedding the booking widget  -->
-<!-- email|String|General email address of the property - where they wish guests to email them  -->
-<!-- user_email|String|Email address of the Check-in Sherpa user who gave access  -->
-<!-- address|String|Property address  -->
-<!-- website|String|Property website URL  -->
-<!-- phone|String|Property phone number - for guests  -->
-<!-- description|String|Property description  -->
-<!-- policies_page|String|URL of the page on their website that has booking policies  -->
-<!-- deposit_percentage|Integer|% of reservation total required for initial deposit  -->
-<!-- balance_due|Integer|# days prior to arrival when balance becomes dues. 0 means balance is due at check-out  -->
+The purpose of this endpoint is to enable you to give a **cheapest rate available estimate** during the early stages of the reservation process; final price will often be different, based on which accomodations are selected.
 
+Rates should be read as the price per person for the entire length of the stay, **not** the nightly rate for the whole room like traditional accommodation.
 
+For each available weekday, you get a list of the cheapest rates available to accommodate
 
 
