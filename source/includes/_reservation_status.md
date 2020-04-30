@@ -1,4 +1,4 @@
- ## Get the latest reservation status
+## Get the latest reservation status
 
 <!-- ### HTTP Request -->
 

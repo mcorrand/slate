@@ -30,10 +30,10 @@ None
         "package": null,
         "verbose": "100.00% off"
     },
-    # more listings
+    // more listings
     ]
 },
-# more discounts
+// more discounts
 ]
 ```
 

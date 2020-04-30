@@ -1,16 +1,16 @@
- ## Seasons List
+## Seasons List
 
- ### HTTP Request
+### HTTP Request
 
- `GET /partners/seasons/`
+`GET /partners/seasons/`
 
- ### Query Parameters
+### Query Parameters
 
 None
 
- ### Response Body
+### Response Body
 
- > The json response looks like this:
+> The json response looks like this:
 
  ```json
 [
@@ -23,17 +23,17 @@ None
         "end_date": "2020-09-20"
     }
 },
-# more seasons
+// more seasons
 ]
  ```
 
- Key | Type | Description
- --------- | ------- | -----------
- id | Integer | The season's id
- name | String | The season's name
- **dates** |
- start_date | String | The date the season starts in YYYY-MM-DD format
- end_date | String | The date the season ends in YYYY-MM-DD format
+Key | Type | Description
+--------- | ------- | -----------
+id | Integer | The season's id
+name | String | The season's name
+**dates** |
+start_date | String | The date the season starts in YYYY-MM-DD format
+end_date | String | The date the season ends in YYYY-MM-DD format
 
 
 

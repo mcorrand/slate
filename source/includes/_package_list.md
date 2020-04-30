@@ -27,7 +27,7 @@ None
     "weekdays_arrival": [3, 6],
     "seasons": [1, 2]
 },
-# ... more packages
+// more packages
 ]
 ```
 

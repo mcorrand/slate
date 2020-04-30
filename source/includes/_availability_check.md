@@ -1,4 +1,4 @@
- ## Availability Check
+## Availability Check
 
 <!-- ### HTTP Request -->
 
