@@ -268,6 +268,18 @@
                     <a href="#age-discounts-list" class="toc-h2 toc-link" data-title="Age Discounts List">Age Discounts List</a>
                   </li>
                   <li>
+                    <a href="#seasons-list" class="toc-h2 toc-link" data-title="Seasons List">Seasons List</a>
+                  </li>
+                  <li>
+                    <a href="#availability-data" class="toc-h2 toc-link" data-title="Availability Data">Availability Data</a>
+                  </li>
+                  <li>
+                    <a href="#pricing-data" class="toc-h2 toc-link" data-title="Pricing Data">Pricing Data</a>
+                  </li>
+                  <li>
+                    <a href="#availability-check" class="toc-h2 toc-link" data-title="Availability Check">Availability Check</a>
+                  </li>
+                  <li>
                     <a href="#inquiry-creation" class="toc-h2 toc-link" data-title="Inquiry Creation">Inquiry Creation</a>
                   </li>
               </ul>
@@ -280,6 +292,9 @@
               <ul class="toc-list-h2">
                   <li>
                     <a href="#get-notified-of-changes" class="toc-h2 toc-link" data-title="Get notified of changes">Get notified of changes</a>
+                  </li>
+                  <li>
+                    <a href="#get-the-latest-reservation-status" class="toc-h2 toc-link" data-title="Get the latest reservation status">Get the latest reservation status</a>
                   </li>
               </ul>
           </li>
@@ -466,7 +481,7 @@
     </span><span class="nl">"weekdays_arrival"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">],</span><span class="w">
     </span><span class="nl">"seasons"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span><span class="w">
 </span><span class="p">},</span><span class="w">
-</span><span class="err">#</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">packages</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">packages</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <table><thead>
@@ -532,17 +547,16 @@
         </span><span class="nl">"package"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
         </span><span class="nl">"verbose"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100.00% off"</span><span class="w">
     </span><span class="p">},</span><span class="w">
-    </span><span class="err">#</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">listings</span><span class="w">
+    </span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">listings</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">},</span><span class="w">
-</span><span class="err">#</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">discounts</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">discounts</span><span class="w">
 </span><span class="p">]</span><span class="w">
 </span></code></pre></div>
 <p>Age Discounts objects comprise a <code>policy</code> object which determines whether a guest is eligible to a discount, and one or more <code>listing</code> objects which determine the amount of the discount, based on the package the guest is booking.</p>
 
 <table><thead>
 <tr>
-<th>Object</th>
 <th>Key</th>
 <th>Type</th>
 <th>Description</th>
@@ -552,28 +566,23 @@
 <td><strong>policy</strong></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>id</td>
 <td>Integer</td>
 <td>The policy&#39;s id</td>
 </tr>
 <tr>
-<td></td>
 <td>min_age</td>
 <td>Integer</td>
 <td>Minimum age at arrival to be eligible for the discount, <strong>inclusive</strong></td>
 </tr>
 <tr>
-<td></td>
 <td>max_age</td>
 <td>Integer</td>
 <td>Maximum age at arrival to be eligible for the discount, <strong>exclusive</strong></td>
 </tr>
 <tr>
-<td></td>
 <td>verbose</td>
 <td>String</td>
 <td>A verbose representation of the policy terms</td>
@@ -582,254 +591,286 @@
 <td><strong>listings</strong></td>
 <td></td>
 <td></td>
-<td></td>
 </tr>
 <tr>
-<td></td>
 <td>id</td>
 <td>Integer</td>
 <td>The listing&#39;s id</td>
 </tr>
 <tr>
-<td></td>
 <td>price_dollars</td>
 <td>Integer or null</td>
 <td>The negative amount, in dollars, of the discount; will be null if the discount is percentage based</td>
 </tr>
 <tr>
-<td></td>
 <td>price_percent</td>
 <td>Integer or null</td>
 <td>The negative percentage, in dollars, of the discount; will be null if the discount is dollar based</td>
 </tr>
 <tr>
-<td></td>
 <td>package</td>
 <td>Integer or null</td>
 <td>If null, this is the default listing; otherwise, this is the id of the package the listing applies to. Package specific listings supercede the default.</td>
 </tr>
 <tr>
-<td></td>
 <td>verbose</td>
 <td>String</td>
 <td>A verbose representation of the listing</td>
 </tr>
 </tbody></table>
-<p>## Seasons List</p>
-
-<!-- ### HTTP Request -->
-
-<!-- `GET /partners/property-info/` -->
-
-<!-- ### Query Parameters -->
-
-<!-- Parameter | Required | Default | Description -->
-
-<!-- --------- | -------  | ------- | ----------- -->
-
-<!-- ### Response Body -->
-
-<!-- > The json response looks like this: -->
-
-<!-- ```json -->
-
-<!-- { -->
-
-<!-- "name": "Pitchfork Ranch",  -->
-
-<!-- "slug_name": "pitchfork-ranch", -->
-
-<!-- "email": "public_email@example.com", -->
-
-<!-- "user_email": "private_email@example.com", -->
-
-<!-- "address": "Property address", -->
-
-<!-- "website": "https://pitchforkranch.example.com", -->
-
-<!-- "phone": "public phone number", -->
-
-<!-- "description": "Property description", -->
-
-<!-- "policies_page": "https://pitchforkranch.example.com/policies", -->
-
-<!-- "deposit_percentage": 30, -->
-
-<!-- "balance_due": 45 -->
-
-<!-- } -->
-
-<!-- ``` -->
-
-<!-- Key | Type | Description -->
-
-<!-- --------- | ------- | ----------- -->
-
-<!-- name|String|The name of the property  -->
-
-<!-- slug_name|String|Slugified name of the property - useful especially when embedding the booking widget  -->
-
-<!-- email|String|General email address of the property - where they wish guests to email them  -->
-
-<!-- user_email|String|Email address of the Check-in Sherpa user who gave access  -->
-
-<!-- address|String|Property address  -->
-
-<!-- website|String|Property website URL  -->
-
-<!-- phone|String|Property phone number - for guests  -->
-
-<!-- description|String|Property description  -->
-
-<!-- policies_page|String|URL of the page on their website that has booking policies  -->
-
-<!-- deposit_percentage|Integer|% of reservation total required for initial deposit  -->
-
-<!-- balance_due|Integer|# days prior to arrival when balance becomes dues. 0 means balance is due at check-out  -->
-<p>## Availability Data</p>
-
-<!-- ### HTTP Request -->
-
-<!-- `GET /partners/property-info/` -->
-
-<!-- ### Query Parameters -->
-
-<!-- Parameter | Required | Default | Description -->
-
-<!-- --------- | -------  | ------- | ----------- -->
-
-<!-- ### Response Body -->
-
-<!-- > The json response looks like this: -->
-
-<!-- ```json -->
-
-<!-- { -->
-
-<!-- "name": "Pitchfork Ranch",  -->
-
-<!-- "slug_name": "pitchfork-ranch", -->
-
-<!-- "email": "public_email@example.com", -->
-
-<!-- "user_email": "private_email@example.com", -->
-
-<!-- "address": "Property address", -->
-
-<!-- "website": "https://pitchforkranch.example.com", -->
-
-<!-- "phone": "public phone number", -->
-
-<!-- "description": "Property description", -->
-
-<!-- "policies_page": "https://pitchforkranch.example.com/policies", -->
-
-<!-- "deposit_percentage": 30, -->
-
-<!-- "balance_due": 45 -->
-
-<!-- } -->
-
-<!-- ``` -->
-
-<!-- Key | Type | Description -->
-
-<!-- --------- | ------- | ----------- -->
-
-<!-- name|String|The name of the property  -->
-
-<!-- slug_name|String|Slugified name of the property - useful especially when embedding the booking widget  -->
-
-<!-- email|String|General email address of the property - where they wish guests to email them  -->
-
-<!-- user_email|String|Email address of the Check-in Sherpa user who gave access  -->
-
-<!-- address|String|Property address  -->
-
-<!-- website|String|Property website URL  -->
-
-<!-- phone|String|Property phone number - for guests  -->
-
-<!-- description|String|Property description  -->
-
-<!-- policies_page|String|URL of the page on their website that has booking policies  -->
-
-<!-- deposit_percentage|Integer|% of reservation total required for initial deposit  -->
-
-<!-- balance_due|Integer|# days prior to arrival when balance becomes dues. 0 means balance is due at check-out  -->
-<p>## Pricing Data</p>
-
-<!-- ### HTTP Request -->
-
-<!-- `GET /partners/property-info/` -->
-
-<!-- ### Query Parameters -->
-
-<!-- Parameter | Required | Default | Description -->
-
-<!-- --------- | -------  | ------- | ----------- -->
-
-<!-- ### Response Body -->
-
-<!-- > The json response looks like this: -->
-
-<!-- ```json -->
-
-<!-- { -->
-
-<!-- "name": "Pitchfork Ranch",  -->
-
-<!-- "slug_name": "pitchfork-ranch", -->
-
-<!-- "email": "public_email@example.com", -->
-
-<!-- "user_email": "private_email@example.com", -->
-
-<!-- "address": "Property address", -->
-
-<!-- "website": "https://pitchforkranch.example.com", -->
-
-<!-- "phone": "public phone number", -->
-
-<!-- "description": "Property description", -->
-
-<!-- "policies_page": "https://pitchforkranch.example.com/policies", -->
-
-<!-- "deposit_percentage": 30, -->
-
-<!-- "balance_due": 45 -->
-
-<!-- } -->
-
-<!-- ``` -->
-
-<!-- Key | Type | Description -->
-
-<!-- --------- | ------- | ----------- -->
-
-<!-- name|String|The name of the property  -->
-
-<!-- slug_name|String|Slugified name of the property - useful especially when embedding the booking widget  -->
-
-<!-- email|String|General email address of the property - where they wish guests to email them  -->
-
-<!-- user_email|String|Email address of the Check-in Sherpa user who gave access  -->
-
-<!-- address|String|Property address  -->
-
-<!-- website|String|Property website URL  -->
-
-<!-- phone|String|Property phone number - for guests  -->
-
-<!-- description|String|Property description  -->
-
-<!-- policies_page|String|URL of the page on their website that has booking policies  -->
-
-<!-- deposit_percentage|Integer|% of reservation total required for initial deposit  -->
-
-<!-- balance_due|Integer|# days prior to arrival when balance becomes dues. 0 means balance is due at check-out  -->
-<p>## Availability Check</p>
-
+<h2 id='seasons-list'>Seasons List</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/seasons/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>None</p>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Season Name"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"dates"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-07"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-20"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">seasons</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>The season&#39;s id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The season&#39;s name</td>
+</tr>
+<tr>
+<td><strong>dates</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>String</td>
+<td>The date the season starts in YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>String</td>
+<td>The date the season ends in YYYY-MM-DD format</td>
+</tr>
+</tbody></table>
+<h2 id='availability-data'>Availability Data</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/availability/list/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>season_id</td>
+<td>Yes</td>
+<td>-</td>
+<td>The id of the season for which you are requesting availability data</td>
+</tr>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Room name"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"max_occupancy"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"room_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">],</span><span class="w">
+  </span><span class="nl">"availability"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-07"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"available"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"available_numbers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="err">//</span><span class="w"> </span><span class="err">More</span><span class="w"> </span><span class="err">availability</span><span class="w"> </span><span class="err">deltas</span><span class="w">
+</span><span class="err">}</span><span class="p">,</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">More</span><span class="w"> </span><span class="err">rooms</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>The room type&#39;s id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The room type&#39;s name</td>
+</tr>
+<tr>
+<td>max_occupancy</td>
+<td>Integer</td>
+<td>The maximum number of guests that can occupy the room</td>
+</tr>
+<tr>
+<td>room_numbers</td>
+<td>[Integer]</td>
+<td>Each room of this type has its own room number</td>
+</tr>
+<tr>
+<td><strong>availability</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>date</td>
+<td>String</td>
+<td>The date for the availability change, in YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>available</td>
+<td>Integer</td>
+<td>The number of rooms of this time that are available on that date</td>
+</tr>
+<tr>
+<td>available_numbers</td>
+<td>[Integer]</td>
+<td>The room numbers of the rooms that are available</td>
+</tr>
+</tbody></table>
+<h2 id='pricing-data'>Pricing Data</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/pricing/</code></p>
+<h3 id='query-parameters'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Required</th>
+<th>Default</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>season_id</td>
+<td>Yes</td>
+<td>-</td>
+<td>The id of the season for which you are requesting availability data</td>
+</tr>
+<tr>
+<td>nights</td>
+<td>Yes</td>
+<td>-</td>
+<td>The length of stay you are requesting pricing data for; must correspond to the length of a package that is available during the season</td>
+</tr>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"start_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-07"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"end_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-20"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"weekdays_arrival"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="err">//</span><span class="w"> </span><span class="err">i.e</span><span class="p">,</span><span class="w"> </span><span class="err">Wednesday</span><span class="w"> </span><span class="err">and</span><span class="w"> </span><span class="err">Sunday</span><span class="w">
+  </span><span class="nl">"low_price"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1400.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1300.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1200.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1100.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1000.00"</span><span class="p">],</span><span class="w">
+      </span><span class="nl">"6"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1200.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1200.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1200.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1100.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1000.00"</span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="err">//</span><span class="w"> </span><span class="err">more</span><span class="w"> </span><span class="err">pricing</span><span class="w"> </span><span class="err">periods</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>start_date</td>
+<td>String</td>
+<td>The date the pricing period starts, in YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>String</td>
+<td>The date the pricing period ends, in YYYY-MM-DD format</td>
+</tr>
+<tr>
+<td>weekdays_arrival</td>
+<td>[Integer]</td>
+<td>The list of (integer formatted, 0 is Monday) weekdays that are available to check-in for the length of stay you requested</td>
+</tr>
+<tr>
+<td>low_price</td>
+<td>{String: [String]}</td>
+<td>A dictionary that maps the weekday of arrival to the pricing data.</td>
+</tr>
+</tbody></table>
+
+<p>The purpose of this endpoint is to enable you to give a <strong>cheapest rate available estimate</strong> during the early stages of the reservation process; final price will often be different, based on which accomodations are selected.</p>
+
+<p>Rates should be read as the price per person for the entire length of the stay, <strong>not</strong> the nightly rate for the whole room like traditional accommodation.</p>
+
+<p>For each available weekday, you get a list of the cheapest rates available to accommodate various size parties in a single room:</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="nl">"2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"1400.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1300.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1200.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1100.00"</span><span class="p">,</span><span class="w"> </span><span class="s2">"1000.00"</span><span class="p">]</span><span class="err">,</span><span class="w">
+</span></code></pre></div>
+<p>The json on the right means that for Wednesday check-ins,</p>
+
+<table><thead>
+<tr>
+<th># in party</th>
+<th>Cheapest rate to show</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>from $1400/person</td>
+</tr>
+<tr>
+<td>2</td>
+<td>from $1300/person</td>
+</tr>
+<tr>
+<td>3</td>
+<td>from $1200/person</td>
+</tr>
+<tr>
+<td>4</td>
+<td>from $1100/person</td>
+</tr>
+<tr>
+<td>5</td>
+<td>from $1000/person</td>
+</tr>
+<tr>
+<td>6+</td>
+<td>from $1000/person (i.e. the minimum rate in the list)</td>
+</tr>
+</tbody></table>
+<h2 id='availability-check'>Availability Check</h2>
 <!-- ### HTTP Request -->
 
 <!-- `GET /partners/property-info/` -->
@@ -917,8 +958,7 @@
 <li>  An object named ‘signature’ you will be able to use to verify the request is coming from us</li>
 <li>  The Id of the reservation that changed, so you can send a query to the Reservation Status endpoint and get the latest info.</li>
 </ul>
-<p>## Get the latest reservation status</p>
-
+<h2 id='get-the-latest-reservation-status'>Get the latest reservation status</h2>
 <!-- ### HTTP Request -->
 
 <!-- `GET /partners/property-info/` -->
