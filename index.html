@@ -277,9 +277,6 @@
                     <a href="#pricing-data" class="toc-h2 toc-link" data-title="Pricing Data">Pricing Data</a>
                   </li>
                   <li>
-                    <a href="#availability-check" class="toc-h2 toc-link" data-title="Availability Check">Availability Check</a>
-                  </li>
-                  <li>
                     <a href="#inquiry-creation" class="toc-h2 toc-link" data-title="Inquiry Creation">Inquiry Creation</a>
                   </li>
               </ul>
@@ -678,15 +675,15 @@
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Required</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>season_id</td>
+<td>Integer</td>
 <td>Yes</td>
-<td>-</td>
 <td>The id of the season for which you are requesting availability data</td>
 </tr>
 </tbody></table>
@@ -765,21 +762,21 @@
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Required</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>season_id</td>
+<td>Integer</td>
 <td>Yes</td>
-<td>-</td>
 <td>The id of the season for which you are requesting availability data</td>
 </tr>
 <tr>
 <td>nights</td>
+<td>Integer</td>
 <td>Yes</td>
-<td>-</td>
 <td>The length of stay you are requesting pricing data for; must correspond to the length of a package that is available during the season</td>
 </tr>
 </tbody></table>
@@ -870,85 +867,239 @@
 <td>from $1000/person (i.e. the minimum rate in the list)</td>
 </tr>
 </tbody></table>
-<h2 id='availability-check'>Availability Check</h2>
-<!-- ### HTTP Request -->
+<h2 id='inquiry-creation'>Inquiry Creation</h2><h3 id='http-request'>HTTP Request</h3>
+<p><code>POST /partners/inquiry/</code></p>
+<h3 id='request-body'>Request Body</h3>
+<blockquote>
+<p>The json request looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"inquired_for_adults"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"inquired_for_kids"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arrival_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-04"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"departure_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-06"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customeremail@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(123)456-7890"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address_line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address_line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wyoming"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>inquired_for_adults</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Number of adults in party</td>
+</tr>
+<tr>
+<td>inquired_for_kids</td>
+<td>Integer</td>
+<td>Yes</td>
+<td>Number of kids in party - usual quoting process then requests the birth dates; we may have to move that in this endpoint</td>
+</tr>
+<tr>
+<td>arrival_date</td>
+<td>String</td>
+<td>Yes</td>
+<td>&#39;YYYY-MM-DD&#39; formatted arrival date, must be in season.</td>
+</tr>
+<tr>
+<td>departure_date</td>
+<td>String</td>
+<td>Yes</td>
+<td>&#39;YYYY-MM-DD&#39; formatted departure date.</td>
+</tr>
+<tr>
+<td><strong>customer</strong></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>Yes</td>
+<td>The customer&#39;s name (required)</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>Yes</td>
+<td>The customer&#39;s email address (required</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>Yes</td>
+<td>The customer&#39;s phone number</td>
+</tr>
+<tr>
+<td>address_line1</td>
+<td>String</td>
+<td>No</td>
+<td>The customer&#39;s address line #1</td>
+</tr>
+<tr>
+<td>address_line2</td>
+<td>String</td>
+<td>No</td>
+<td>The customer&#39;s address line #1</td>
+</tr>
+<tr>
+<td>city</td>
+<td>String</td>
+<td>No</td>
+<td>The customer&#39;s city</td>
+</tr>
+<tr>
+<td>zip</td>
+<td>String</td>
+<td>No</td>
+<td>The customer&#39;s zip code</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>No</td>
+<td>The customer&#39;s state if in US/Canada</td>
+</tr>
+<tr>
+<td>country</td>
+<td>String</td>
+<td>No</td>
+<td>The customer&#39;s country</td>
+</tr>
+</tbody></table>
+<h3 id='response-body'>Response Body</h3>
+<blockquote>
+<p>The json response looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"inquired_for_adults"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"inquired_for_kids"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"arrival_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-04"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"departure_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-06"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"customer"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer Name"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customeremail@example.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"(123)456-7890"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address_line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 1"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"address_line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Address line 2"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12345"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wyoming"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"United States"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p>The response contains the data you have submitted, + the reservation and customer id.</p>
 
-<!-- `GET /partners/property-info/` -->
-
-<!-- ### Query Parameters -->
-
-<!-- Parameter | Required | Default | Description -->
-
-<!-- --------- | -------  | ------- | ----------- -->
-
-<!-- ### Response Body -->
-
-<!-- > The json response looks like this: -->
-
-<!-- ```json -->
-
-<!-- { -->
-
-<!-- "name": "Pitchfork Ranch",  -->
-
-<!-- "slug_name": "pitchfork-ranch", -->
-
-<!-- "email": "public_email@example.com", -->
-
-<!-- "user_email": "private_email@example.com", -->
-
-<!-- "address": "Property address", -->
-
-<!-- "website": "https://pitchforkranch.example.com", -->
-
-<!-- "phone": "public phone number", -->
-
-<!-- "description": "Property description", -->
-
-<!-- "policies_page": "https://pitchforkranch.example.com/policies", -->
-
-<!-- "deposit_percentage": 30, -->
-
-<!-- "balance_due": 45 -->
-
-<!-- } -->
-
-<!-- ``` -->
-
-<!-- Key | Type | Description -->
-
-<!-- --------- | ------- | ----------- -->
-
-<!-- name|String|The name of the property  -->
-
-<!-- slug_name|String|Slugified name of the property - useful especially when embedding the booking widget  -->
-
-<!-- email|String|General email address of the property - where they wish guests to email them  -->
-
-<!-- user_email|String|Email address of the Check-in Sherpa user who gave access  -->
-
-<!-- address|String|Property address  -->
-
-<!-- website|String|Property website URL  -->
-
-<!-- phone|String|Property phone number - for guests  -->
-
-<!-- description|String|Property description  -->
-
-<!-- policies_page|String|URL of the page on their website that has booking policies  -->
-
-<!-- deposit_percentage|Integer|% of reservation total required for initial deposit  -->
-
-<!-- balance_due|Integer|# days prior to arrival when balance becomes dues. 0 means balance is due at check-out  -->
-<h2 id='inquiry-creation'>Inquiry Creation</h2>
-<p><strong>Will add implementation when you’ve tested oauth, right now it’s simply to test your access token</strong></p>
-
-<ul>
-<li>  Endpoint: /partners/inquiry/</li>
-<li>  Verbs: POST</li>
-<li>  Request Body: NONE CURRENTLY</li>
-<li>  Response Body: NONE CURRENTLY</li>
-</ul>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>The reservation number</td>
+</tr>
+<tr>
+<td>inquired_for_adults</td>
+<td>Integer</td>
+<td>Number of adults in party</td>
+</tr>
+<tr>
+<td>inquired_for_kids</td>
+<td>Integer</td>
+<td>Number of kids in party - usual quoting process then requests the birth dates; we may have to move that in this endpoint</td>
+</tr>
+<tr>
+<td>arrival_date</td>
+<td>String</td>
+<td>&#39;YYYY-MM-DD&#39; formatted arrival date, must be in season.</td>
+</tr>
+<tr>
+<td>departure_date</td>
+<td>String</td>
+<td>&#39;YYYY-MM-DD&#39; formatted departure date.</td>
+</tr>
+<tr>
+<td><strong>customer</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>Integer</td>
+<td>The customer id</td>
+</tr>
+<tr>
+<td>name</td>
+<td>String</td>
+<td>The customer&#39;s name (required)</td>
+</tr>
+<tr>
+<td>email</td>
+<td>String</td>
+<td>The customer&#39;s email address (required</td>
+</tr>
+<tr>
+<td>phone</td>
+<td>String</td>
+<td>The customer&#39;s phone number</td>
+</tr>
+<tr>
+<td>address_line1</td>
+<td>String</td>
+<td>The customer&#39;s address line #1</td>
+</tr>
+<tr>
+<td>address_line2</td>
+<td>String</td>
+<td>The customer&#39;s address line #1</td>
+</tr>
+<tr>
+<td>city</td>
+<td>String</td>
+<td>The customer&#39;s city</td>
+</tr>
+<tr>
+<td>zip</td>
+<td>String</td>
+<td>The customer&#39;s zip code</td>
+</tr>
+<tr>
+<td>state</td>
+<td>String</td>
+<td>The customer&#39;s state if in US/Canada</td>
+</tr>
+<tr>
+<td>country</td>
+<td>String</td>
+<td>The customer&#39;s country</td>
+</tr>
+</tbody></table>
 <h1 id='embedding-our-widget'>Embedding Our Widget</h1><h1 id='tracking-reservations'>Tracking reservations</h1><h2 id='get-notified-of-changes'>Get notified of changes</h2>
 <p>Whenever the status of a reservation you own changes, or a payment is processed, we will post data to the URI you provided.</p>
 
