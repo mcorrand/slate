@@ -6,9 +6,9 @@
 
 ### Query Parameters
 
-Parameter | Required | Default | Description
+Parameter | Type | Required | Description
 --------- | -------  | ------- | -----------
-season_id | Yes | - | The id of the season for which you are requesting availability data 
+season_id | Integer | Yes | The id of the season for which you are requesting availability data 
 
 ### Response Body
 

@@ -6,10 +6,10 @@
 
 ### Query Parameters
 
-Parameter | Required | Default | Description
+Parameter | Type | Required | Description
 --------- | -------  | ------- | -----------
-season_id | Yes | - | The id of the season for which you are requesting availability data 
-nights | Yes | - | The length of stay you are requesting pricing data for; must correspond to the length of a package that is available during the season
+season_id | Integer | Yes | The id of the season for which you are requesting availability data 
+nights | Integer | Yes | The length of stay you are requesting pricing data for; must correspond to the length of a package that is available during the season
 
 ### Response Body
 

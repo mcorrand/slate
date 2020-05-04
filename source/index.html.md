@@ -14,7 +14,6 @@ includes:
   - seasons_list
   - availability_data
   - pricing_data
-  - availability_check
   - creating_inquiry
   - embedding_widget
   - webhook
