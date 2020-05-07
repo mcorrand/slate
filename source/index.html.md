@@ -60,10 +60,11 @@ Register an application at [/o/applications/register/](https://staging.ranchbook
 
 
 
-*   Logo: an image to be displayed to end-users authorizing your application on their account. Size is 100px by 100px
-*   Name, Website and Description: displayed to end-users so they can identify your app
-*   Redirect URIs: space separated list of allowed URIs you control for post-auth redirect
-*   Webhook Endpoint: endpoint where Check-in Sherpa will send change notifications
+*   **Logo**: an image to be displayed to end-users authorizing your application on their account. Size is 100px by 100px
+*   **Name and Description**: displayed to end-users so they can identify your app
+*   **Websites**: a list of websites where you will display the calendar, as full URLs, space separated. They must be secured websites (start with https). **You will not be able to embed the booking widget on any website not listed here.**
+*   **Redirect URIs**: space separated list of allowed URIs you control for post-auth redirect
+*   **Webhook Endpoint**: endpoint where Check-in Sherpa will send change notifications
 
 Once you save your application, you are redirected to a page where you can see your client_id and client_secret.
 
@@ -90,7 +91,7 @@ Here is an end-user account for the staging environment so you can test the whol
 *   Password: password
 
 
-# Using your Access Token
+# Using your Access Token for API queries
 
 When sending requests, add a header:
 
