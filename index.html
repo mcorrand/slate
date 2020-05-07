@@ -242,7 +242,7 @@
             <a href="#obtaining-an-access-token" class="toc-h1 toc-link" data-title="Obtaining an Access Token">Obtaining an Access Token</a>
           </li>
           <li>
-            <a href="#using-your-access-token" class="toc-h1 toc-link" data-title="Using your Access Token">Using your Access Token</a>
+            <a href="#using-your-access-token-for-api-queries" class="toc-h1 toc-link" data-title="Using your Access Token for API queries">Using your Access Token for API queries</a>
           </li>
           <li>
             <a href="#retrieving-resort-information" class="toc-h1 toc-link" data-title="Retrieving resort information">Retrieving resort information</a>
@@ -283,6 +283,14 @@
           </li>
           <li>
             <a href="#embedding-our-widget" class="toc-h1 toc-link" data-title="Embedding Our Widget">Embedding Our Widget</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#loading-the-widget" class="toc-h2 toc-link" data-title="Loading the widget">Loading the widget</a>
+                  </li>
+                  <li>
+                    <a href="#widget-api" class="toc-h2 toc-link" data-title="Widget API">Widget API</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#tracking-reservations" class="toc-h1 toc-link" data-title="Tracking reservations">Tracking reservations</a>
@@ -334,10 +342,11 @@
 <p>Register an application at <a href="https://staging.ranchbookings.com/o/applications/register/">/o/applications/register/</a></p>
 
 <ul>
-<li>  Logo: an image to be displayed to end-users authorizing your application on their account. Size is 100px by 100px</li>
-<li>  Name, Website and Description: displayed to end-users so they can identify your app</li>
-<li>  Redirect URIs: space separated list of allowed URIs you control for post-auth redirect</li>
-<li>  Webhook Endpoint: endpoint where Check-in Sherpa will send change notifications</li>
+<li>  <strong>Logo</strong>: an image to be displayed to end-users authorizing your application on their account. Size is 100px by 100px</li>
+<li>  <strong>Name and Description</strong>: displayed to end-users so they can identify your app</li>
+<li>  <strong>Websites</strong>: a list of websites where you will display the calendar, as full URLs, space separated. They must be secured websites (start with https). <strong>You will not be able to embed the booking widget on any website not listed here.</strong></li>
+<li>  <strong>Redirect URIs</strong>: space separated list of allowed URIs you control for post-auth redirect</li>
+<li>  <strong>Webhook Endpoint</strong>: endpoint where Check-in Sherpa will send change notifications</li>
 </ul>
 
 <p>Once you save your application, you are redirected to a page where you can see your client_id and client_secret.</p>
@@ -360,7 +369,7 @@
 <li>  Username: admin</li>
 <li>  Password: password</li>
 </ul>
-<h1 id='using-your-access-token'>Using your Access Token</h1>
+<h1 id='using-your-access-token-for-api-queries'>Using your Access Token for API queries</h1>
 <p>When sending requests, add a header:</p>
 
 <ul>
@@ -1100,7 +1109,76 @@
 <td>The customer&#39;s country</td>
 </tr>
 </tbody></table>
-<h1 id='embedding-our-widget'>Embedding Our Widget</h1><h1 id='tracking-reservations'>Tracking reservations</h1><h2 id='get-notified-of-changes'>Get notified of changes</h2>
+<h1 id='embedding-our-widget'>Embedding Our Widget</h1>
+<p>Instead of implementing your own booking calendar, you can embed our booking widget.
+Once you have <a href="#creating-an-application">registered an application</a> and <a href="#obtaining-an-access-token">obtained authorization from a resort</a>, you can embed their booking calendar using your app&#39;s Client Id and the resort&#39;s Slug Name that you can obtain via <a href="#retrieving-resort-information">the resort information endpoint</a>.</p>
+<h2 id='loading-the-widget'>Loading the widget</h2>
+<p>Execute the javascript on the right side in a &lt;script&gt; tag near the top of the &lt;head&gt; tag.
+<strong>Make sure to replace &lt;&lt;DOMAIN&gt;&gt; with <a href="#introduction">the right domain</a>.</strong></p>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="p">(</span><span class="kd">function</span> <span class="p">(</span><span class="nx">s</span><span class="p">,</span><span class="nx">h</span><span class="p">,</span><span class="nx">e</span><span class="p">,</span><span class="nx">r</span><span class="p">,</span><span class="nx">p</span><span class="p">,</span><span class="nx">a</span><span class="p">,</span><span class="nx">l</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">s</span><span class="p">[</span><span class="dl">'</span><span class="s1">SherpaWidget</span><span class="dl">'</span><span class="p">]</span><span class="o">=</span><span class="nx">r</span><span class="p">;</span><span class="nx">s</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">r</span><span class="p">]</span> <span class="o">||</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span> <span class="p">(</span><span class="nx">s</span><span class="p">[</span><span class="nx">r</span><span class="p">].</span><span class="nx">q</span> <span class="o">=</span> <span class="nx">s</span><span class="p">[</span><span class="nx">r</span><span class="p">].</span><span class="nx">q</span> <span class="o">||</span> <span class="p">[]).</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">)</span> <span class="p">};</span>
+    <span class="nx">a</span> <span class="o">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="nx">e</span><span class="p">),</span> <span class="nx">l</span> <span class="o">=</span> <span class="nx">h</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="nx">e</span><span class="p">)[</span><span class="mi">0</span><span class="p">];</span>
+    <span class="nx">a</span><span class="p">.</span><span class="nx">id</span> <span class="o">=</span> <span class="nx">r</span><span class="p">;</span> <span class="nx">a</span><span class="p">.</span><span class="nx">src</span> <span class="o">=</span> <span class="nx">p</span><span class="p">;</span> <span class="nx">a</span><span class="p">.</span><span class="k">async</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">l</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">insertBefore</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span> <span class="nx">l</span><span class="p">);</span>
+<span class="p">}(</span><span class="nb">window</span><span class="p">,</span> <span class="nb">document</span><span class="p">,</span> <span class="dl">'</span><span class="s1">script</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">sherpa</span><span class="dl">'</span><span class="p">,</span> <span class="dl">'</span><span class="s1">https://&lt;&lt;DOMAIN&gt;&gt;/static/js/affiliates/widget.js</span><span class="dl">'</span><span class="p">));</span>
+</code></pre></div><h2 id='widget-api'>Widget API</h2>
+<p>The widget supports two functions:</p>
+
+<ul>
+<li><strong>init</strong> configures the widget</li>
+<li><strong>render</strong> renders the widget; any argument passed will override any configurations from <strong>init</strong> or any defaults</li>
+</ul>
+
+<p><strong>init</strong> is mostly useful to avoid code repetition if you call <strong>render</strong> several times per page load, i.e. in the context of a Single Page Application.</p>
+
+<blockquote>
+<p>Here are a couple example calls:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="nx">sherpa</span><span class="p">(</span><span class="dl">'</span><span class="s1">init</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">clientId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">abcdef</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">containerId</span><span class="p">:</span> <span class="dl">"</span><span class="s2">myContainer</span><span class="dl">"</span>
+<span class="p">})</span>
+
+<span class="nx">sherpa</span><span class="p">(</span><span class="dl">'</span><span class="s1">render</span><span class="dl">'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="na">resortSlug</span><span class="p">:</span> <span class="dl">"</span><span class="s2">ExampleResort</span><span class="dl">"</span><span class="p">,</span>
+  <span class="na">modalButtons</span><span class="p">:</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="dl">"</span><span class="s2">myButtonClass</span><span class="dl">"</span><span class="p">)</span>
+<span class="p">})</span>
+</code></pre></div>
+<p>Below are the arguments supported by those functions</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>clientId</td>
+<td>String</td>
+<td>Yes</td>
+<td>Your app&#39;s client id, so we can identify you have access to the resort&#39;s calendar</td>
+</tr>
+<tr>
+<td>resortSlug</td>
+<td>String</td>
+<td>Yes</td>
+<td>The resort&#39;s &quot;slug name&quot; obtained via <a href="#retrieving-resort-information">the resort information endpoint</a>.</td>
+</tr>
+<tr>
+<td>containerId</td>
+<td>String</td>
+<td>No</td>
+<td>The id for the &lt;div&gt; element where you would like the calendar to be rendered. Defaults to &quot;sherpacontainer&quot;. If not found, will create the &lt;div&gt;.</td>
+</tr>
+<tr>
+<td>modalButtons</td>
+<td>HTMLCollection</td>
+<td>No</td>
+<td>If undefined, will attempt to retrieve all elements with the &quot;sherpa-modal-button&quot; class. If some buttons are passed-in or found via the default class, the calendar widget will load in a modal when clicking those buttons. If no buttons are found, the calendar will be rendered right in the container.</td>
+</tr>
+</tbody></table>
+<h1 id='tracking-reservations'>Tracking reservations</h1><h2 id='get-notified-of-changes'>Get notified of changes</h2>
 <p>Whenever the status of a reservation you own changes, or a payment is processed, we will post data to the URI you provided.</p>
 
 <p>The payload will contain:</p>
