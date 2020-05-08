@@ -13,7 +13,7 @@ Execute the javascript on the right side in a \<script> tag near the top of the 
     s['SherpaWidget']=r;s[r] = s[r] || function () { (s[r].q = s[r].q || []).push(arguments) };
     a = h.createElement(e), l = h.getElementsByTagName(e)[0];
     a.id = r; a.src = p; a.async = 1; l.parentNode.insertBefore(a, l);
-}(window, document, 'script', 'sherpa', 'https://<<DOMAIN>>/static/js/affiliates/widget.js'));
+}(window, document, 'script', 'sherpa', 'https://<<DOMAIN>>/widget.js'));
 ```
 
 ## Widget API
