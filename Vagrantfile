@@ -11,6 +11,7 @@ Vagrant.configure(2) do |config|
       # add nodejs v12 repository
       curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -
 
+      echo '* libraries/restart-without-asking boolean true' | sudo debconf-set-selections
       sudo apt-get update
       sudo apt-get install -yq ruby ruby-dev
       sudo apt-get install -yq pkg-config build-essential nodejs git libxml2-dev libxslt-dev
