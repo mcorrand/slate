@@ -4,7 +4,7 @@ title: API Reference
 language_tabs: # must be one of https://git.io/vQNgJ
  - python
  - ruby
- - javascript: node
+ - typescript: node
 
 toc_footers:
   - <a href='https://www.ranchbookings.com/partners/register'>Register as a partner</a>

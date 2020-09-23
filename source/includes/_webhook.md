@@ -1,8 +1,4 @@
 # Webhooks
-
-## Webhook Subscriptions
-
-## Retry Policy
  
 ## Universal Webhook
 
@@ -63,7 +59,7 @@ def verify(signing_key, token, timestamp, signature)
 end
 ```
 
-```javascript
+```typescript
 const crypto = require('crypto')
 
 const verify = ({ signingKey, timestamp, token, signature }) => {
@@ -83,3 +79,239 @@ To generate the signature for comparison against the one we sent along, you need
 * Compare that hexdigest to the signature.
 
 Consider caching the token value locally and not honoring any subsequent request with the same token to protect against replay attacks.
+
+## Other Webhooks
+
+We created the following webhooks to power our Zapier integration. For third party developers, we recommend using the Universal Webhook, but those webhooks are supported if for whatever reason you prefer using them.
+
+### The Order Webhooks
+
+> Example Order Webhook Payload
+
+```json
+{
+  "id": 33025,
+  "resort": {
+    "id": 2,
+    "name": "The Best Ranch In The WORLD",
+    "slug_name": "TheBestRanchInTheWORLD"
+  },
+  "package": {
+    "id": 14,
+    "name": "6 Nights"
+  },
+  "rooms": [
+    {
+      "room_type": {
+        "id": 7,
+        "name": "Cowboy",
+        "twin_beds": 2,
+        "full_beds": 0,
+        "queen_beds": 1,
+        "king_beds": 0
+      },
+      "room_name": "Cowboy",
+      "room_number": 4,
+      "number_occupants": 4,
+      "created_on": "2020-09-03T17:14:17.230Z",
+      "modified_on": "2020-09-03T17:14:17.230Z"
+    }
+  ],
+  "invoice": [
+    {
+      "description": "4 guests in room Cowboy",
+      "quantity": 4,
+      "unit_price": "1931.44",
+      "unit_tax": "424.67",
+      "amount": "9424.44",
+      "created_on": "2020-09-03T17:14:17.351Z",
+      "modified_on": "2020-09-03T17:14:17.351Z"
+    }
+  ],
+  "payments": [
+    {
+      "description": "Full payment for your stay at Demo Ranch",
+      "amount": "7068.33",
+      "is_cash": false,
+      "refunded": false,
+      "amount_refunded": "500.00",
+      "net_amount": "6568.33",
+      "created_on": "2020-09-03T17:18:07.813Z",
+      "modified_on": "2020-09-03T17:18:07.813Z",
+      "status": "succeeded",
+      "method": "Visa 1111",
+      "refunds": [
+        {
+          "amount": "500.00",
+          "created_on": "2020-03-26T17:41:54.545Z",
+          "modified_on": "2020-03-26T17:41:54.545Z"
+        }
+      ]
+    }
+  ],
+  "status": "Fully Paid",
+  "customer": {
+    "id": 31923,
+    "name": "Matthieu Corrand",
+    "email": "matt@ranchbookings.com,steve@ranchbookings.com",
+    "phone": "3074132324",
+    "address_line1": "",
+    "address_line2": "",
+    "city": "",
+    "state": "",
+    "zip": "",
+    "country": "",
+    "created_on": "2020-09-03T17:18:05.749Z",
+    "modified_on": "2020-09-03T17:25:34.030Z"
+  },
+  "arrival_date": "2020-09-06",
+  "departure_date": "2020-09-12",
+  "created_on": "2020-09-03T17:14:17.225Z",
+  "modified_on": "2020-09-03T17:18:07.847Z"
+}
+```
+
+`order_new` and `order_update` will fire for new and updated reservations respectively.
+The payload contains the reservation details and associated resources.
+
+### The Customer Webhooks
+
+> Example Customer Webhook Payload
+
+```json
+{
+  "id": 31923,
+  "name": "Matthieu Corrand",
+  "email": "matt@ranchbookings.com,steve@ranchbookings.com",
+  "phone": "3074132324",
+  "address_line1": "",
+  "address_line2": "",
+  "city": "",
+  "state": "",
+  "zip": "",
+  "country": "",
+  "created_on": "2020-09-03T17:18:05.749Z",
+  "modified_on": "2020-09-03T17:25:34.030Z"
+}
+```
+
+`customer_new` and `customer_update` will fire for new and updated customers respectively.
+The payload contains the customer information.
+
+### The Payment Webhooks
+
+> Example Payment Webhook Payload
+
+```json
+{
+  "description": "Payment for reservation at Demo Ranch",
+  "amount": "1000.00",
+  "is_cash": true,
+  "refunded": true,
+  "amount_refunded": "500.00",
+  "net_amount": "500.00",
+  "created_on": "2020-03-26T17:33:30.087Z",
+  "modified_on": "2020-03-26T17:41:54.542Z",
+  "status": "succeeded",
+  "method": "Cash/Check",
+  "refunds": [
+    {
+      "amount": "500.00",
+      "created_on": "2020-03-26T17:41:54.545Z",
+      "modified_on": "2020-03-26T17:41:54.545Z"
+    }
+  ]
+}
+```
+
+`payment_new` and `payment_update` will fire for new and updated (refunded) payments respectively.
+The payload contains the payment information.
+
+## Webhook Subscriptions
+
+Webhook URLs are required to be unique within each resort; i.e you can use `https://www.mydomain.com/webhook-handler/order_new` to handle the `order_new` webhook of many resorts; but you cannot use `https://www.mydomain.com/webhook-handler/` for both the `universal` webhook and the `order_new` webhook of a single resort.
+
+### Using the Universal Webhook URL setting
+
+If you set the Universal Webhook URL setting on your application, a new Webhook Subscription for the Universal Webhook will automatically be created for each resort which enables your application.
+This saves you from having to manage webhook subscriptions individually via the api. Combined with the more streamlined payload of the universal webhook, this is our recommended way of setting up Webhooks.
+
+### Using the API to create a Webhook Subscription
+
+You can subscribe to specific webhooks for a resort via the API; it requires [authenticating your request](#using-your-access-token-for-api-queries). 
+
+#### HTTP Request
+
+`POST /partners/webhooks/`
+
+#### Request Body
+
+> The json request looks like this:
+
+```json
+{
+    "type": "order_new",
+    "url": "https://www.domain.com/webhook-handler"
+}
+```
+
+Key | Type | Required | Description
+--------- | ------- | ------- | -----------
+type | String | Yes | The type of webhook to subscribe to. Available choices are `order_new`, `order_update`, `customer_new`, `customer_update`, `payment_new`, `payment_update` and `universal`.
+url | String | Yes | The URL where we should POST the webhook.
+
+
+You can also list all your subscriptions for a resort by issuing a `GET` request to this endpoint.
+
+### Unsubscribing from a Webhook
+
+#### HTTP Request
+
+`DELETE /partners/webhooks/`
+
+#### Request Body
+
+> The json request looks like this:
+
+```json
+{
+    "url": "https://www.domain.com/webhook-handler"
+}
+```
+
+
+Key | Type | Required | Description
+--------- | ------- | ------- | -----------
+url | String | Yes | The URL for the webhook you want to unsubscribe from for that resort.
+
+## Retry Policy
+
+> using the formula 
+
+> `(retry_count ** 4) + 15 + (randint(0, 30) * (retry_count + 1))` 
+
+If we are not successful in sending a webhook (we receive a 4xx or 5xx status code from your server or our request times out), we will retry up to 15 times with an **exponential backoff** (i.e. 15, 16, 31, 96, 271, ... seconds + a [random amount of time](https://github.com/mperham/sidekiq/issues/480)).
+
+The 15 retries will be performed in approximately 36 hours. Please note: we will retry sending to the same URL as our first attempt; changing the url of your webhook will not be reflected in retry attempts.
+
+This table contains approximate retry waiting time.
+
+ # | Next retry backoff | Total waiting time
+---|--------------------|-------------------
+ 1 |     0d  0h  0m 30s |     0d  0h  0m 30s
+ 2 |     0d  0h  0m 46s |     0d  0h  1m 16s
+ 3 |     0d  0h  1m 16s |     0d  0h  2m 32s
+ 4 |     0d  0h  2m 36s |     0d  0h  5m  8s
+ 5 |     0d  0h  5m 46s |     0d  0h 10m 54s
+ 6 |     0d  0h 12m 10s |     0d  0h 23m  4s
+ 7 |     0d  0h 23m 36s |     0d  0h 46m 40s
+ 8 |     0d  0h 42m 16s |     0d  1h 28m 56s
+ 9 |     0d  1h 10m 46s |     0d  2h 39m 42s
+10 |     0d  1h 52m  6s |     0d  4h 31m 48s
+11 |     0d  2h 49m 40s |     0d  7h 21m 28s
+12 |     0d  4h  7m 16s |     0d 11h 28m 44s
+13 |     0d  5h 49m  6s |     0d 17h 17m 50s
+14 |     0d  7h 59m 46s |     1d  1h 17m 36s
+15 |     0d 10h 44m 16s |     1d 12h  1m 52s
+
+This table was calculated under the assumption that `randint(0, 30)` always returns 15.
