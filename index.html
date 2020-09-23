@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>API Reference</title>
 
-    <style>
+    <style media="screen">
       .highlight table td { padding: 5px; }
 .highlight table pre { margin: 0; }
 .highlight .gh {
@@ -146,47 +146,36 @@
 }
 .highlight .vc {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .nn {
   color: #ffffff;
-  background-color: #272822;
-}
-.highlight .nl {
-  color: #ffffff;
-  background-color: #272822;
 }
 .highlight .ni {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .bp {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .vg {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .vi {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .nv, .highlight .vm {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .w {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight {
   color: #ffffff;
-  background-color: #272822;
 }
 .highlight .n, .highlight .py, .highlight .nx {
   color: #ffffff;
-  background-color: #272822;
+}
+.highlight .nl {
+  color: #f92672;
 }
 .highlight .ow {
   color: #f92672;
@@ -207,22 +196,111 @@
   color: #f92672;
 }
     </style>
-    <link href="stylesheets/screen-a1ce949a.css" rel="stylesheet" media="screen" />
-    <link href="stylesheets/print-bccf8c07.css" rel="stylesheet" media="print" />
-      <script src="javascripts/all-c5541673.js"></script>
+    <style media="print">
+      * {
+        -webkit-transition:none!important;
+        transition:none!important;
+      }
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #586e75;
+}
+.highlight .err {
+  color: #002b36;
+  background-color: #dc322f;
+}
+.highlight .c, .highlight .ch, .highlight .cd, .highlight .cm, .highlight .cpf, .highlight .c1, .highlight .cs {
+  color: #657b83;
+}
+.highlight .cp {
+  color: #b58900;
+}
+.highlight .nt {
+  color: #b58900;
+}
+.highlight .o, .highlight .ow {
+  color: #93a1a1;
+}
+.highlight .p, .highlight .pi {
+  color: #93a1a1;
+}
+.highlight .gi {
+  color: #859900;
+}
+.highlight .gd {
+  color: #dc322f;
+}
+.highlight .gh {
+  color: #268bd2;
+  background-color: #002b36;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #6c71c4;
+}
+.highlight .kc {
+  color: #cb4b16;
+}
+.highlight .kt {
+  color: #cb4b16;
+}
+.highlight .kd {
+  color: #cb4b16;
+}
+.highlight .s, .highlight .sa, .highlight .sb, .highlight .sc, .highlight .dl, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #859900;
+}
+.highlight .sr {
+  color: #2aa198;
+}
+.highlight .si {
+  color: #d33682;
+}
+.highlight .se {
+  color: #d33682;
+}
+.highlight .nn {
+  color: #b58900;
+}
+.highlight .nc {
+  color: #b58900;
+}
+.highlight .no {
+  color: #b58900;
+}
+.highlight .na {
+  color: #268bd2;
+}
+.highlight .m, .highlight .mb, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mx {
+  color: #859900;
+}
+.highlight .ss {
+  color: #859900;
+}
+    </style>
+    <link href="stylesheets/screen-c9d8fa83.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print-953e3353.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all-e9bde216.js"></script>
+
+    <script>
+      $(function() { setupCodeCopy(); });
+    </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;]">
+  <body class="index" data-languages="[&quot;python&quot;,&quot;ruby&quot;,&quot;typescript&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar-cad8cdcb.png" alt="Navbar" />
+        <img src="images/navbar-cad8cdcb.png" alt="" />
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-e75e0729.png" class="logo" alt="Logo" />
+      <img src="images/logo-e75e0729.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="python">python</a>
+              <a href="#" data-language-name="ruby">ruby</a>
+              <a href="#" data-language-name="typescript">node</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -293,10 +371,19 @@
               </ul>
           </li>
           <li>
-            <a href="#tracking-reservations" class="toc-h1 toc-link" data-title="Tracking reservations">Tracking reservations</a>
+            <a href="#webhooks" class="toc-h1 toc-link" data-title="Webhooks">Webhooks</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-notified-of-changes" class="toc-h2 toc-link" data-title="Get notified of changes">Get notified of changes</a>
+                    <a href="#universal-webhook" class="toc-h2 toc-link" data-title="Universal Webhook">Universal Webhook</a>
+                  </li>
+                  <li>
+                    <a href="#other-webhooks" class="toc-h2 toc-link" data-title="Other Webhooks">Other Webhooks</a>
+                  </li>
+                  <li>
+                    <a href="#webhook-subscriptions" class="toc-h2 toc-link" data-title="Webhook Subscriptions">Webhook Subscriptions</a>
+                  </li>
+                  <li>
+                    <a href="#retry-policy" class="toc-h2 toc-link" data-title="Retry Policy">Retry Policy</a>
                   </li>
                   <li>
                     <a href="#get-the-latest-reservation-status" class="toc-h2 toc-link" data-title="Get the latest reservation status">Get the latest reservation status</a>
@@ -345,8 +432,9 @@
 <li>  <strong>Logo</strong>: an image to be displayed to end-users authorizing your application on their account. Size is 100px by 100px</li>
 <li>  <strong>Name and Description</strong>: displayed to end-users so they can identify your app</li>
 <li>  <strong>Websites</strong>: a list of websites where you will display the calendar, as full URLs, space separated. They must be secured websites (start with https). <strong>You will not be able to embed the booking widget on any website not listed here.</strong></li>
-<li>  <strong>Redirect URIs</strong>: space separated list of allowed URIs you control for post-auth redirect</li>
-<li>  <strong>Webhook Endpoint</strong>: endpoint where Check-in Sherpa will send change notifications</li>
+<li>  <strong>Api Access</strong>: if you are not a developer and will only use booking links/widgets, you do not need API Access. Leave this unchecked and we&#39;ll take care of authorization for you. If you do enable API Access, you get access to two more settings:</li>
+<li>  <strong>Redirect URIs</strong>: space separated list of allowed URIs you control for post-auth redirect.</li>
+<li>  <strong>Universal Webhook URL</strong>: endpoint where Check-in Sherpa will send change notifications for reservations you &quot;own&quot;. You can subscribe to webhooks for individual resorts on your own; but this makes it much more convenient as the subscription gets created automatically upon a resort joining your app.</li>
 </ul>
 
 <p>Once you save your application, you are redirected to a page where you can see your client_id and client_secret.</p>
@@ -1178,15 +1266,392 @@ Once you have <a href="#creating-an-application">registered an application</a> a
 <td>If undefined, will attempt to retrieve all elements with the &quot;sherpa-modal-button&quot; class. If some buttons are passed-in or found via the default class, the calendar widget will load in a modal when clicking those buttons. If no buttons are found, the calendar will be rendered right in the container.</td>
 </tr>
 </tbody></table>
-<h1 id='tracking-reservations'>Tracking reservations</h1><h2 id='get-notified-of-changes'>Get notified of changes</h2>
-<p>Whenever the status of a reservation you own changes, or a payment is processed, we will post data to the URI you provided.</p>
+<h1 id='webhooks'>Webhooks</h1><h2 id='universal-webhook'>Universal Webhook</h2>
+<p>The universal webhook fires on any change to a reservation you own (including related resource changes such as customer, invoice and payments).</p>
 
-<p>The payload will contain:</p>
-
+<p>The payload you receive contains:</p>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"signature"</span><span class="p">:</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1600876661</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9d6bdaa2-fcd0-415a-8a6d-d5c3356cbde4"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"signature"</span><span class="p">:</span><span class="w"> </span><span class="s2">"c60f7704417c09d7b07fe2a371b5d946323205ed1ecce3c11af7d546f3c4d510"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12345</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"event"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order_new"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"resort"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pitchfork Ranch"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"slug_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pitchfork-ranch"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
 <ul>
 <li>  An object named ‘signature’ you will be able to use to verify the request is coming from us</li>
 <li>  The Id of the reservation that changed, so you can send a query to the Reservation Status endpoint and get the latest info.</li>
+<li>  The event that caused the webhook to fire</li>
+<li>  The resort which the reservation belongs to, so you can use the right access token when calling into the api to get the data.</li>
 </ul>
+
+<p>The &#39;signature&#39; object contains:</p>
+
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>timestamp</td>
+<td>Integer</td>
+<td>Number of seconds passed since January 1, 1970.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>String</td>
+<td>a randomly generated string of 36 characters (a version 4 UUID)</td>
+</tr>
+<tr>
+<td>signature</td>
+<td>String</td>
+<td>String of hexadecimal digits generated by the HMAC algorithm</td>
+</tr>
+</tbody></table>
+<h3 id='securing-the-universal-webhook'>Securing the Universal Webhook</h3><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">hashlib</span><span class="p">,</span> <span class="n">hmac</span>
+
+<span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="n">signing_key</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">,</span> <span class="n">signature</span><span class="p">):</span>
+    <span class="n">hmac_digest</span> <span class="o">=</span> <span class="n">hmac</span><span class="p">.</span><span class="n">new</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">signing_key</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span>
+                           <span class="n">msg</span><span class="o">=</span><span class="p">(</span><span class="s">'{}{}'</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">token</span><span class="p">)).</span><span class="n">encode</span><span class="p">(),</span>
+                           <span class="n">digestmod</span><span class="o">=</span><span class="n">hashlib</span><span class="p">.</span><span class="n">sha256</span><span class="p">).</span><span class="n">hexdigest</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">hmac</span><span class="p">.</span><span class="n">compare_digest</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">signature</span><span class="p">),</span> <span class="nb">str</span><span class="p">(</span><span class="n">hmac_digest</span><span class="p">))</span>
+</code></pre></div><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'openssl'</span>
+
+<span class="k">def</span> <span class="nf">verify</span><span class="p">(</span><span class="n">signing_key</span><span class="p">,</span> <span class="n">token</span><span class="p">,</span> <span class="n">timestamp</span><span class="p">,</span> <span class="n">signature</span><span class="p">)</span>
+  <span class="n">digest</span> <span class="o">=</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">Digest</span><span class="o">::</span><span class="no">SHA256</span><span class="p">.</span><span class="nf">new</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="p">[</span><span class="n">timestamp</span><span class="p">,</span> <span class="n">token</span><span class="p">].</span><span class="nf">join</span>
+  <span class="n">signature</span> <span class="o">==</span> <span class="no">OpenSSL</span><span class="o">::</span><span class="no">HMAC</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="n">digest</span><span class="p">,</span> <span class="n">signing_key</span><span class="p">,</span> <span class="n">data</span><span class="p">)</span>
+<span class="k">end</span>
+</code></pre></div><div class="highlight"><pre class="highlight typescript tab-typescript"><code><span class="kd">const</span> <span class="nx">crypto</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">crypto</span><span class="dl">'</span><span class="p">)</span>
+
+<span class="kd">const</span> <span class="nx">verify</span> <span class="o">=</span> <span class="p">({</span> <span class="nx">signingKey</span><span class="p">,</span> <span class="nx">timestamp</span><span class="p">,</span> <span class="nx">token</span><span class="p">,</span> <span class="nx">signature</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="kd">const</span> <span class="nx">encodedToken</span> <span class="o">=</span> <span class="nx">crypto</span>
+        <span class="p">.</span><span class="nx">createHmac</span><span class="p">(</span><span class="dl">'</span><span class="s1">sha256</span><span class="dl">'</span><span class="p">,</span> <span class="nx">signingKey</span><span class="p">)</span>
+        <span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">timestamp</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">token</span><span class="p">))</span>
+        <span class="p">.</span><span class="nx">digest</span><span class="p">(</span><span class="dl">'</span><span class="s1">hex</span><span class="dl">'</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="p">(</span><span class="nx">encodedToken</span> <span class="o">===</span> <span class="nx">signature</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>To generate the signature for comparison against the one we sent along, you need to:</p>
+
+<ul>
+<li>Concatenate the timestamp and token.</li>
+<li>Encode that message with the HMAC algorithm, using your application&#39;s Client Secret as the key and SHA256 as the digest mode.</li>
+<li>Compare that hexdigest to the signature.</li>
+</ul>
+
+<p>Consider caching the token value locally and not honoring any subsequent request with the same token to protect against replay attacks.</p>
+<h2 id='other-webhooks'>Other Webhooks</h2>
+<p>We created the following webhooks to power our Zapier integration. For third party developers, we recommend using the Universal Webhook, but those webhooks are supported if for whatever reason you prefer using them.</p>
+<h3 id='the-order-webhooks'>The Order Webhooks</h3>
+<blockquote>
+<p>Example Order Webhook Payload</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33025</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"resort"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"The Best Ranch In The WORLD"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"slug_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TheBestRanchInTheWORLD"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"package"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6 Nights"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"rooms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"room_type"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cowboy"</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"twin_beds"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"full_beds"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"queen_beds"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nl">"king_beds"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nl">"room_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cowboy"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"room_number"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"number_occupants"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:14:17.230Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:14:17.230Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"invoice"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4 guests in room Cowboy"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"unit_price"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1931.44"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"unit_tax"</span><span class="p">:</span><span class="w"> </span><span class="s2">"424.67"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9424.44"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:14:17.351Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:14:17.351Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"payments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Full payment for your stay at Demo Ranch"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7068.33"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"is_cash"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"refunded"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"amount_refunded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"net_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6568.33"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:18:07.813Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:18:07.813Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Visa 1111"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"refunds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500.00"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-26T17:41:54.545Z"</span><span class="p">,</span><span class="w">
+          </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-26T17:41:54.545Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fully Paid"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31923</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matthieu Corrand"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt@ranchbookings.com,steve@ranchbookings.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3074132324"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address_line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"address_line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:18:05.749Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:25:34.030Z"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nl">"arrival_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-06"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"departure_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-12"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:14:17.225Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:18:07.847Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>order_new</code> and <code>order_update</code> will fire for new and updated reservations respectively.
+The payload contains the reservation details and associated resources.</p>
+<h3 id='the-customer-webhooks'>The Customer Webhooks</h3>
+<blockquote>
+<p>Example Customer Webhook Payload</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31923</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matthieu Corrand"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matt@ranchbookings.com,steve@ranchbookings.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3074132324"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"address_line1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"address_line2"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"zip"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:18:05.749Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-09-03T17:25:34.030Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>customer_new</code> and <code>customer_update</code> will fire for new and updated customers respectively.
+The payload contains the customer information.</p>
+<h3 id='the-payment-webhooks'>The Payment Webhooks</h3>
+<blockquote>
+<p>Example Payment Webhook Payload</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="nl">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Payment for reservation at Demo Ranch"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"is_cash"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"refunded"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"amount_refunded"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"net_amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500.00"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-26T17:33:30.087Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-26T17:41:54.542Z"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"succeeded"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cash/Check"</span><span class="p">,</span><span class="w">
+  </span><span class="nl">"refunds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nl">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500.00"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"created_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-26T17:41:54.545Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nl">"modified_on"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-26T17:41:54.545Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<p><code>payment_new</code> and <code>payment_update</code> will fire for new and updated (refunded) payments respectively.
+The payload contains the payment information.</p>
+<h2 id='webhook-subscriptions'>Webhook Subscriptions</h2>
+<p>Webhook URLs are required to be unique within each resort; i.e you can use <code>https://www.mydomain.com/webhook-handler/order_new</code> to handle the <code>order_new</code> webhook of many resorts; but you cannot use <code>https://www.mydomain.com/webhook-handler/</code> for both the <code>universal</code> webhook and the <code>order_new</code> webhook of a single resort.</p>
+<h3 id='using-the-universal-webhook-url-setting'>Using the Universal Webhook URL setting</h3>
+<p>If you set the Universal Webhook URL setting on your application, a new Webhook Subscription for the Universal Webhook will automatically be created for each resort which enables your application.
+This saves you from having to manage webhook subscriptions individually via the api. Combined with the more streamlined payload of the universal webhook, this is our recommended way of setting up Webhooks.</p>
+<h3 id='using-the-api-to-create-a-webhook-subscription'>Using the API to create a Webhook Subscription</h3>
+<p>You can subscribe to specific webhooks for a resort via the API; it requires <a href="#using-your-access-token-for-api-queries">authenticating your request</a>. </p>
+<h4 id='http-request'>HTTP Request</h4>
+<p><code>POST /partners/webhooks/</code></p>
+<h4 id='request-body'>Request Body</h4>
+<blockquote>
+<p>The json request looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order_new"</span><span class="p">,</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.domain.com/webhook-handler"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>String</td>
+<td>Yes</td>
+<td>The type of webhook to subscribe to. Available choices are <code>order_new</code>, <code>order_update</code>, <code>customer_new</code>, <code>customer_update</code>, <code>payment_new</code>, <code>payment_update</code> and <code>universal</code>.</td>
+</tr>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Yes</td>
+<td>The URL where we should POST the webhook.</td>
+</tr>
+</tbody></table>
+
+<p>You can also list all your subscriptions for a resort by issuing a <code>GET</code> request to this endpoint.</p>
+<h3 id='unsubscribing-from-a-webhook'>Unsubscribing from a Webhook</h3><h4 id='http-request-2'>HTTP Request</h4>
+<p><code>DELETE /partners/webhooks/</code></p>
+<h4 id='request-body-2'>Request Body</h4>
+<blockquote>
+<p>The json request looks like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+    </span><span class="nl">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.domain.com/webhook-handler"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div>
+<table><thead>
+<tr>
+<th>Key</th>
+<th>Type</th>
+<th>Required</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>String</td>
+<td>Yes</td>
+<td>The URL for the webhook you want to unsubscribe from for that resort.</td>
+</tr>
+</tbody></table>
+<h2 id='retry-policy'>Retry Policy</h2>
+<blockquote>
+<p>using the formula </p>
+
+<p><code>(retry_count ** 4) + 15 + (randint(0, 30) * (retry_count + 1))</code> </p>
+</blockquote>
+
+<p>If we are not successful in sending a webhook (we receive a 4xx or 5xx status code from your server or our request times out), we will retry up to 15 times with an <strong>exponential backoff</strong> (i.e. 15, 16, 31, 96, 271, ... seconds + a <a href="https://github.com/mperham/sidekiq/issues/480">random amount of time</a>).</p>
+
+<p>The 15 retries will be performed in approximately 36 hours. Please note: we will retry sending to the same URL as our first attempt; changing the url of your webhook will not be reflected in retry attempts.</p>
+
+<p>This table contains approximate retry waiting time.</p>
+
+<table><thead>
+<tr>
+<th>#</th>
+<th>Next retry backoff</th>
+<th>Total waiting time</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1</td>
+<td>0d  0h  0m 30s</td>
+<td>0d  0h  0m 30s</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0d  0h  0m 46s</td>
+<td>0d  0h  1m 16s</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0d  0h  1m 16s</td>
+<td>0d  0h  2m 32s</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0d  0h  2m 36s</td>
+<td>0d  0h  5m  8s</td>
+</tr>
+<tr>
+<td>5</td>
+<td>0d  0h  5m 46s</td>
+<td>0d  0h 10m 54s</td>
+</tr>
+<tr>
+<td>6</td>
+<td>0d  0h 12m 10s</td>
+<td>0d  0h 23m  4s</td>
+</tr>
+<tr>
+<td>7</td>
+<td>0d  0h 23m 36s</td>
+<td>0d  0h 46m 40s</td>
+</tr>
+<tr>
+<td>8</td>
+<td>0d  0h 42m 16s</td>
+<td>0d  1h 28m 56s</td>
+</tr>
+<tr>
+<td>9</td>
+<td>0d  1h 10m 46s</td>
+<td>0d  2h 39m 42s</td>
+</tr>
+<tr>
+<td>10</td>
+<td>0d  1h 52m  6s</td>
+<td>0d  4h 31m 48s</td>
+</tr>
+<tr>
+<td>11</td>
+<td>0d  2h 49m 40s</td>
+<td>0d  7h 21m 28s</td>
+</tr>
+<tr>
+<td>12</td>
+<td>0d  4h  7m 16s</td>
+<td>0d 11h 28m 44s</td>
+</tr>
+<tr>
+<td>13</td>
+<td>0d  5h 49m  6s</td>
+<td>0d 17h 17m 50s</td>
+</tr>
+<tr>
+<td>14</td>
+<td>0d  7h 59m 46s</td>
+<td>1d  1h 17m 36s</td>
+</tr>
+<tr>
+<td>15</td>
+<td>0d 10h 44m 16s</td>
+<td>1d 12h  1m 52s</td>
+</tr>
+</tbody></table>
+
+<p>This table was calculated under the assumption that <code>randint(0, 30)</code> always returns 15.</p>
 <h2 id='get-the-latest-reservation-status'>Get the latest reservation status</h2>
 <!-- ### HTTP Request -->
 
@@ -1261,7 +1726,9 @@ Once you have <a href="#creating-an-application">registered an application</a> a
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="python">python</a>
+                <a href="#" data-language-name="ruby">ruby</a>
+                <a href="#" data-language-name="typescript">node</a>
           </div>
       </div>
     </div>
