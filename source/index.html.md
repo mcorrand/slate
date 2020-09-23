@@ -22,6 +22,8 @@ includes:
   - reservation_status
 
 search: true
+
+code_clipboard: true
 ---
 # Introduction
 
