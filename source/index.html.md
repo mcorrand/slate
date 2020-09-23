@@ -63,8 +63,9 @@ Register an application at [/o/applications/register/](https://staging.ranchbook
 *   **Logo**: an image to be displayed to end-users authorizing your application on their account. Size is 100px by 100px
 *   **Name and Description**: displayed to end-users so they can identify your app
 *   **Websites**: a list of websites where you will display the calendar, as full URLs, space separated. They must be secured websites (start with https). **You will not be able to embed the booking widget on any website not listed here.**
-*   **Redirect URIs**: space separated list of allowed URIs you control for post-auth redirect
-*   **Webhook Endpoint**: endpoint where Check-in Sherpa will send change notifications
+*   **Api Access**: if you are not a developer and will only use booking links/widgets, you do not need API Access. Leave this unchecked and we'll take care of authorization for you. If you do enable API Access, you get access to two more settings:
+*   **Redirect URIs**: space separated list of allowed URIs you control for post-auth redirect.
+*   **Universal Webhook URL**: endpoint where Check-in Sherpa will send change notifications for reservations you "own". You can subscribe to webhooks for individual resorts on your own; but this makes it much more convenient as the subscription gets created automatically upon a resort joining your app.
 
 Once you save your application, you are redirected to a page where you can see your client_id and client_secret.
 
