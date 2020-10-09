@@ -80,6 +80,27 @@ To generate the signature for comparison against the one we sent along, you need
 
 Consider caching the token value locally and not honoring any subsequent request with the same token to protect against replay attacks.
 
+## Retrieving the Reservation Information
+
+Once you have received a webhook notifying you of a change to a reservation, you can send a request (authenticated using the resort's access token) to get the latest reservation data.
+
+### HTTP Request
+
+`GET /partners/order/{{ order_id}}/`
+
+<aside class="notice">
+    `order_id` is the `id` of the reservation received in the Universal Webhook Payload.
+</aside>
+
+### Query Parameters
+
+None
+
+### Response Body
+
+The response is detailed in the [Order Webhook section](#other-webhooks).
+
+
 ## Other Webhooks
 
 We created the following webhooks to power our Zapier integration. For third party developers, we recommend using the Universal Webhook, but those webhooks are supported if for whatever reason you prefer using them.
