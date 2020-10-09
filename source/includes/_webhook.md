@@ -1,4 +1,11 @@
 # Webhooks
+
+We offer two different types of webhooks:
+
+* The [Universal Webhook](#universal-webhook) which notifies you of any change to reservations you own.
+This is our recommended webhook for third party apps: it is [simple to subscribe to](#using-the-universal-webhook-url-setting), secure, and lets you [request the updated data](#retrieving-the-reservation-information) when you need it.
+
+* The [Resource Webhooks](#resource-webhooks) which we created for our Zapier integration but can be used for any app. They send data when individual resources (Orders, Customers, Payments) are created or updated. They require [subscribing for each resource and each resort](#using-the-api-to-manage-webhook-subscriptions) and are much less convenient as a result.
  
 ## Universal Webhook
 
@@ -89,7 +96,7 @@ Once you have received a webhook notifying you of a change to a reservation, you
 `GET /partners/order/{{ order_id}}/`
 
 <aside class="notice">
-    `order_id` is the `id` of the reservation received in the Universal Webhook Payload.
+    <code>order_id</code> is the <code>id</code> of the reservation received in the Universal Webhook Payload.
 </aside>
 
 ### Query Parameters
@@ -98,10 +105,10 @@ None
 
 ### Response Body
 
-The response is detailed in the [Order Webhook section](#other-webhooks).
+The response is detailed in the [Order Webhook section](#resource-webhooks).
 
 
-## Other Webhooks
+## Resource Webhooks
 
 We created the following webhooks to power our Zapier integration. For third party developers, we recommend using the Universal Webhook, but those webhooks are supported if for whatever reason you prefer using them.
 
@@ -252,20 +259,20 @@ The payload contains the payment information.
 
 Webhook URLs are required to be unique within each resort; i.e you can use `https://www.mydomain.com/webhook-handler/order_new` to handle the `order_new` webhook of many resorts; but you cannot use `https://www.mydomain.com/webhook-handler/` for both the `universal` webhook and the `order_new` webhook of a single resort.
 
-### Using the Universal Webhook URL setting
+## Using the Universal Webhook URL setting
 
 If you set the Universal Webhook URL setting on your application, a new Webhook Subscription for the Universal Webhook will automatically be created for each resort which enables your application.
 This saves you from having to manage webhook subscriptions individually via the api. Combined with the more streamlined payload of the universal webhook, this is our recommended way of setting up Webhooks.
 
-### Using the API to create a Webhook Subscription
+## Using the API to manage Webhook Subscriptions
 
 You can subscribe to specific webhooks for a resort via the API; it requires [authenticating your request](#using-your-access-token-for-api-queries). 
 
-#### HTTP Request
+### HTTP Request
 
 `POST /partners/webhooks/`
 
-#### Request Body
+### Request Body
 
 > The json request looks like this:
 
