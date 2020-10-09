@@ -377,6 +377,9 @@
                     <a href="#universal-webhook" class="toc-h2 toc-link" data-title="Universal Webhook">Universal Webhook</a>
                   </li>
                   <li>
+                    <a href="#retrieving-the-reservation-information" class="toc-h2 toc-link" data-title="Retrieving the Reservation Information">Retrieving the Reservation Information</a>
+                  </li>
+                  <li>
                     <a href="#other-webhooks" class="toc-h2 toc-link" data-title="Other Webhooks">Other Webhooks</a>
                   </li>
                   <li>
@@ -1352,6 +1355,18 @@ Once you have <a href="#creating-an-application">registered an application</a> a
 </ul>
 
 <p>Consider caching the token value locally and not honoring any subsequent request with the same token to protect against replay attacks.</p>
+<h2 id='retrieving-the-reservation-information'>Retrieving the Reservation Information</h2>
+<p>Once you have received a webhook notifying you of a change to a reservation, you can send a request (authenticated using the resort&#39;s access token) to get the latest reservation data.</p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>GET /partners/order/{{ order_id}}/</code></p>
+
+<aside class="notice">
+    `order_id` is the `id` of the reservation received in the Universal Webhook Payload.
+</aside>
+<h3 id='query-parameters'>Query Parameters</h3>
+<p>None</p>
+<h3 id='response-body'>Response Body</h3>
+<p>The response is detailed in the <a href="#other-webhooks">Order Webhook section</a>.</p>
 <h2 id='other-webhooks'>Other Webhooks</h2>
 <p>We created the following webhooks to power our Zapier integration. For third party developers, we recommend using the Universal Webhook, but those webhooks are supported if for whatever reason you prefer using them.</p>
 <h3 id='the-order-webhooks'>The Order Webhooks</h3>
@@ -1495,7 +1510,7 @@ The payload contains the payment information.</p>
 This saves you from having to manage webhook subscriptions individually via the api. Combined with the more streamlined payload of the universal webhook, this is our recommended way of setting up Webhooks.</p>
 <h3 id='using-the-api-to-create-a-webhook-subscription'>Using the API to create a Webhook Subscription</h3>
 <p>You can subscribe to specific webhooks for a resort via the API; it requires <a href="#using-your-access-token-for-api-queries">authenticating your request</a>. </p>
-<h4 id='http-request'>HTTP Request</h4>
+<h4 id='http-request-2'>HTTP Request</h4>
 <p><code>POST /partners/webhooks/</code></p>
 <h4 id='request-body'>Request Body</h4>
 <blockquote>
@@ -1529,7 +1544,7 @@ This saves you from having to manage webhook subscriptions individually via the 
 </tbody></table>
 
 <p>You can also list all your subscriptions for a resort by issuing a <code>GET</code> request to this endpoint.</p>
-<h3 id='unsubscribing-from-a-webhook'>Unsubscribing from a Webhook</h3><h4 id='http-request-2'>HTTP Request</h4>
+<h3 id='unsubscribing-from-a-webhook'>Unsubscribing from a Webhook</h3><h4 id='http-request-3'>HTTP Request</h4>
 <p><code>DELETE /partners/webhooks/</code></p>
 <h4 id='request-body-2'>Request Body</h4>
 <blockquote>
