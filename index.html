@@ -380,10 +380,16 @@
                     <a href="#retrieving-the-reservation-information" class="toc-h2 toc-link" data-title="Retrieving the Reservation Information">Retrieving the Reservation Information</a>
                   </li>
                   <li>
-                    <a href="#other-webhooks" class="toc-h2 toc-link" data-title="Other Webhooks">Other Webhooks</a>
+                    <a href="#resource-webhooks" class="toc-h2 toc-link" data-title="Resource Webhooks">Resource Webhooks</a>
                   </li>
                   <li>
                     <a href="#webhook-subscriptions" class="toc-h2 toc-link" data-title="Webhook Subscriptions">Webhook Subscriptions</a>
+                  </li>
+                  <li>
+                    <a href="#using-the-universal-webhook-url-setting" class="toc-h2 toc-link" data-title="Using the Universal Webhook URL setting">Using the Universal Webhook URL setting</a>
+                  </li>
+                  <li>
+                    <a href="#using-the-api-to-manage-webhook-subscriptions" class="toc-h2 toc-link" data-title="Using the API to manage Webhook Subscriptions">Using the API to manage Webhook Subscriptions</a>
                   </li>
                   <li>
                     <a href="#retry-policy" class="toc-h2 toc-link" data-title="Retry Policy">Retry Policy</a>
@@ -1269,7 +1275,15 @@ Once you have <a href="#creating-an-application">registered an application</a> a
 <td>If undefined, will attempt to retrieve all elements with the &quot;sherpa-modal-button&quot; class. If some buttons are passed-in or found via the default class, the calendar widget will load in a modal when clicking those buttons. If no buttons are found, the calendar will be rendered right in the container.</td>
 </tr>
 </tbody></table>
-<h1 id='webhooks'>Webhooks</h1><h2 id='universal-webhook'>Universal Webhook</h2>
+<h1 id='webhooks'>Webhooks</h1>
+<p>We offer two different types of webhooks:</p>
+
+<ul>
+<li><p>The <a href="#universal-webhook">Universal Webhook</a> which notifies you of any change to reservations you own.
+This is our recommended webhook for third party apps: it is <a href="#using-the-universal-webhook-url-setting">simple to subscribe to</a>, secure, and lets you <a href="#retrieving-the-reservation-information">request the updated data</a> when you need it.</p></li>
+<li><p>The <a href="#resource-webhooks">Resource Webhooks</a> which we created for our Zapier integration but can be used for any app. They send data when individual resources (Orders, Customers, Payments) are created or updated. They require <a href="#using-the-api-to-manage-webhook-subscriptions">subscribing for each resource and each resort</a> and are much less convenient as a result.</p></li>
+</ul>
+<h2 id='universal-webhook'>Universal Webhook</h2>
 <p>The universal webhook fires on any change to a reservation you own (including related resource changes such as customer, invoice and payments).</p>
 
 <p>The payload you receive contains:</p>
@@ -1361,13 +1375,13 @@ Once you have <a href="#creating-an-application">registered an application</a> a
 <p><code>GET /partners/order/{{ order_id}}/</code></p>
 
 <aside class="notice">
-    `order_id` is the `id` of the reservation received in the Universal Webhook Payload.
+    <code>order_id</code> is the <code>id</code> of the reservation received in the Universal Webhook Payload.
 </aside>
 <h3 id='query-parameters'>Query Parameters</h3>
 <p>None</p>
 <h3 id='response-body'>Response Body</h3>
-<p>The response is detailed in the <a href="#other-webhooks">Order Webhook section</a>.</p>
-<h2 id='other-webhooks'>Other Webhooks</h2>
+<p>The response is detailed in the <a href="#resource-webhooks">Order Webhook section</a>.</p>
+<h2 id='resource-webhooks'>Resource Webhooks</h2>
 <p>We created the following webhooks to power our Zapier integration. For third party developers, we recommend using the Universal Webhook, but those webhooks are supported if for whatever reason you prefer using them.</p>
 <h3 id='the-order-webhooks'>The Order Webhooks</h3>
 <blockquote>
@@ -1505,14 +1519,14 @@ The payload contains the customer information.</p>
 The payload contains the payment information.</p>
 <h2 id='webhook-subscriptions'>Webhook Subscriptions</h2>
 <p>Webhook URLs are required to be unique within each resort; i.e you can use <code>https://www.mydomain.com/webhook-handler/order_new</code> to handle the <code>order_new</code> webhook of many resorts; but you cannot use <code>https://www.mydomain.com/webhook-handler/</code> for both the <code>universal</code> webhook and the <code>order_new</code> webhook of a single resort.</p>
-<h3 id='using-the-universal-webhook-url-setting'>Using the Universal Webhook URL setting</h3>
+<h2 id='using-the-universal-webhook-url-setting'>Using the Universal Webhook URL setting</h2>
 <p>If you set the Universal Webhook URL setting on your application, a new Webhook Subscription for the Universal Webhook will automatically be created for each resort which enables your application.
 This saves you from having to manage webhook subscriptions individually via the api. Combined with the more streamlined payload of the universal webhook, this is our recommended way of setting up Webhooks.</p>
-<h3 id='using-the-api-to-create-a-webhook-subscription'>Using the API to create a Webhook Subscription</h3>
+<h2 id='using-the-api-to-manage-webhook-subscriptions'>Using the API to manage Webhook Subscriptions</h2>
 <p>You can subscribe to specific webhooks for a resort via the API; it requires <a href="#using-your-access-token-for-api-queries">authenticating your request</a>. </p>
-<h4 id='http-request-2'>HTTP Request</h4>
+<h3 id='http-request-2'>HTTP Request</h3>
 <p><code>POST /partners/webhooks/</code></p>
-<h4 id='request-body'>Request Body</h4>
+<h3 id='request-body'>Request Body</h3>
 <blockquote>
 <p>The json request looks like this:</p>
 </blockquote>
